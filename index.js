@@ -11,7 +11,15 @@ const dotenv =require("dotenv").config()
 const {v4:uniqueKeyGenerate}=require("uuid")
 
 //cloudinary to upload images in my cloud storage
-const cloudinary = require("../server/Cloudinary/cloudinary")
+
+const cloudinary = require("cloudinary");
+require("dotenv").config();
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
+
 
 const previewSchema=require("./schema/preview")
 const key=uniqueKeyGenerate()
